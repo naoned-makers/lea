@@ -1,0 +1,29 @@
+{
+  "name": "lea",
+  "version": "1.0.0",
+  "description": "lea",
+  "main": "index.js",
+  "scripts": {
+    "prod": "pm2 start ecosystem.config.js --env production",
+    "dev": "pm2 start ecosystem.config.js",
+    "lea-broker": "node ../lea-broker/service/lea-broker.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/naoned-makers/lea.git"
+  },
+  "author": "dbatiot",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/naoned-makers/lea/issues"
+  },
+  "homepage": "https://github.com/naoned-makers/lea#readme",
+  "dependencies": {
+    "bonjour": "git+https://github.com/ionic-team/bonjour.git",
+    "ejs": "^2.5.7",
+    "express": "^4.15.3",
+    "ip": "^1.1.5",
+    "mqtt": "^2.13.0",
+    "path": "^0.12.7"
+  }
+}
