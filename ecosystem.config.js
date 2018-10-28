@@ -47,5 +47,12 @@ module.exports = {
         env: {},
         env_production: {}
       },
+      // Message direct pour l'arduino
+      {
+        name: 'lea-twitter-client',
+        script: 'npm run lea-twitter-client',
+        merge_logs: true,
+        log_date_format: 'YYYY-MM-DD HH:mm'
+      },
   ]
 };
