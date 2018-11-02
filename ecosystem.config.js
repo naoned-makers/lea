@@ -21,9 +21,27 @@ module.exports = {
         merge_logs: true,
         log_date_format: 'YYYY-MM-DD HH:mm',
       },
-      // Message direct pour l'arduino
+      {
+        name: 'lea-brain',
+        script: 'npm run lea-brain',
+        merge_logs: true,
+        log_date_format: 'YYYY-MM-DD HH:mm',
+      },
       {
         name: 'lea-arduino',
+        script: '../lea-arduino/dist/app.js',
+        merge_logs: true,
+        log_date_format: 'YYYY-MM-DD HH:mm',
+        watch: ["../lea-arduino/dist/app.js"],
+        watch_options: {
+          "followSymlinks": true
+        },
+        env: {},
+        env_production: {}
+      },
+      // Message direct pour l'arduino
+      {
+        name: 'lea-broker-arduino',
         script: '../lea-broker/service/lea-arduino.js',
         merge_logs: true,
         log_date_format: 'YYYY-MM-DD HH:mm',
@@ -36,7 +54,7 @@ module.exports = {
       },
       // Message direct pour l'arduino
       {
-        name: 'lea-twitter',
+        name: 'lea-broker-twitter',
         script: '../lea-broker/service/lea-twitter.js',
         merge_logs: true,
         log_date_format: 'YYYY-MM-DD HH:mm',
@@ -49,7 +67,7 @@ module.exports = {
       },
       // Message direct pour l'arduino
       {
-        name: 'lea-twitter-client',
+        name: 'lea-twitter',
         script: 'npm run lea-twitter-client',
         merge_logs: true,
         log_date_format: 'YYYY-MM-DD HH:mm'

@@ -8,6 +8,8 @@
     "dev": "pm2 start ecosystem.config.js",
     "lea-broker": "node ../lea-broker/service/lea-broker.js",
     "lea-twitter-client": "node ../lea-twitter/dist/app.js",
+    "lea-brain": "node ../lea-brain/dist/app.js",
+    "lea-arduino": "node ../lea-arduino/dist/app.js",
     "test": "sh ./install-projects.sh"
   },
   "repository": {

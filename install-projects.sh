@@ -4,6 +4,7 @@ USER='lynchmaniac'
 REPO_BROKER='./lea-broker'
 REPO_UI='./lea-ui'
 REPO_TWITTER='./lea-twitter'
+REPO_ARDUINO='./lea-arduino'
 
 GIT=`which git`
 cd ..
@@ -43,4 +44,17 @@ if [ ! -d ${REPO_TWITTER}/.git ]; then
   npm install
 else
   echo "${REPO_TWITTER} is an install repo! Nothing to do..." 
+fi
+
+cd ..
+
+# Only proceed if we have a valid repo.
+if [ ! -d ${REPO_ARDUINO}/.git ]; then
+  echo "${REPO_ARDUINO} is not install! Installing..." 
+  ${GIT} clone https://github.com/naoned-makers/${REPO_ARDUINO}.git
+  echo "${REPO_ARDUINO} is install" 
+  cd ${REPO_ARDUINO}
+  npm install
+else
+  echo "${REPO_ARDUINO} is an install repo! Nothing to do..." 
 fi
