@@ -24,20 +24,17 @@ module.exports = {
       {
         name: 'lea-brain',
         script: 'npm run lea-brain',
+        cwd: '../lea-brain',
         merge_logs: true,
         log_date_format: 'YYYY-MM-DD HH:mm',
       },
       {
         name: 'lea-arduino',
-        script: '../lea-arduino/dist/app.js',
+        script: 'npm run lea-arduino',
+        cwd: '../lea-arduino',
+        watch: ["../lea-arduino/src/js/app.js"],
         merge_logs: true,
         log_date_format: 'YYYY-MM-DD HH:mm',
-        watch: ["../lea-arduino/dist/app.js"],
-        watch_options: {
-          "followSymlinks": true
-        },
-        env: {},
-        env_production: {}
       },
       // Message direct pour l'arduino
       {
