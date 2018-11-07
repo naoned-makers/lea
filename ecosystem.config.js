@@ -1,8 +1,9 @@
 module.exports = {
   apps: [
-      // admin 
+
+      // Lance le serveur Express pour exposer l'UI de Léa
       {
-        name: 'lea-admin',
+        name: 'lea',
         script: './index.js',
         merge_logs: true,
         log_date_format: 'YYYY-MM-DD HH:mm',
@@ -11,63 +12,73 @@ module.exports = {
         watch_options: {
           "followSymlinks": true
         },
-        env: {AVAHI_COMPAT_NOWARN:'1'},
-        env_production: {AVAHI_COMPAT_NOWARN:'1'}
+        env: {},
+        env_production: {}
       },
-      // Message direct pour l'arduino
+
+      // Démarre le serveur Mosca Broker de Message pour Léa
       {
         name: 'lea-broker',
-        script: 'npm run lea-broker',
+        script: 'npm run $SCRIPT',
+        cwd: '../lea-broker',
+        watch: ["../lea-broker/src/js/app.js"],
         merge_logs: true,
         log_date_format: 'YYYY-MM-DD HH:mm',
+        env: {
+          "SCRIPT" : "dev",
+        },
+        env_production: {
+          "SCRIPT" : "prod",
+        }
       },
+
+      // Le cerveau de Léa qui lui permet de mettre la logique fonctionnelle dans les échanges
+      // entre l'API Twiter/l'UI et la connexion à l'Arduino
       {
         name: 'lea-brain',
-        script: 'npm run lea-brain',
+        script: 'npm run $SCRIPT',
         cwd: '../lea-brain',
+        watch: ["../lea-brain/src/js/app.js"],
         merge_logs: true,
         log_date_format: 'YYYY-MM-DD HH:mm',
+        env: {
+          "SCRIPT" : "dev",
+        },
+        env_production: {
+          "SCRIPT" : "prod",
+        }
       },
+
+      // Effectue l'envoi de message vers l'Arduino grace au port série
       {
         name: 'lea-arduino',
-        script: 'npm run lea-arduino',
+        script: 'npm run $SCRIPT',
         cwd: '../lea-arduino',
         watch: ["../lea-arduino/src/js/app.js"],
         merge_logs: true,
         log_date_format: 'YYYY-MM-DD HH:mm',
-      },
-      // Message direct pour l'arduino
-      {
-        name: 'lea-broker-arduino',
-        script: '../lea-broker/service/lea-arduino.js',
-        merge_logs: true,
-        log_date_format: 'YYYY-MM-DD HH:mm',
-        watch: ["../lea-broker/service/lea-arduino.js"],
-        watch_options: {
-          "followSymlinks": true
+        env: {
+          "SCRIPT" : "dev",
         },
-        env: {},
-        env_production: {}
+        env_production: {
+          "SCRIPT" : "prod",
+        }
       },
-      // Message direct pour l'arduino
-      {
-        name: 'lea-broker-twitter',
-        script: '../lea-broker/service/lea-twitter.js',
-        merge_logs: true,
-        log_date_format: 'YYYY-MM-DD HH:mm',
-        watch: ["../lea-broker/service/lea-twitter.js"],
-        watch_options: {
-          "followSymlinks": true
-        },
-        env: {},
-        env_production: {}
-      },
-      // Message direct pour l'arduino
+
+      // Ecoute l'API Twitter ou Envoie des tweet pour l'UI
       {
         name: 'lea-twitter',
-        script: 'npm run lea-twitter-client',
+        script: 'npm run $SCRIPT',
+        cwd: '../lea-twitter',
+        watch: ["../lea-twitter/src/js/app.js"],
         merge_logs: true,
-        log_date_format: 'YYYY-MM-DD HH:mm'
+        log_date_format: 'YYYY-MM-DD HH:mm',
+        env: {
+          "SCRIPT" : "dev",
+        },
+        env_production: {
+          "SCRIPT" : "prod",
+        }
       },
   ]
 };
