@@ -20,6 +20,7 @@ install_repo()
     echo "${REPO} is install"
     cd ${REPO}
     npm install
+    npm run build
     cd ..
   else
     echo "${REPO} is an install repo! Nothing to do..." 
