@@ -4,9 +4,10 @@
   "description": "Entry point for Lea",
   "main": "index.js",
   "scripts": {
-    "prod": "pm2 start ecosystem.config.js --env production",
-    "dev": "pm2 start ecosystem.config.js",
-    "postinstall": "sh ./install-projects.sh"
+    "prod": "rm -rf ~/.pm2/logs && pm2 start ecosystem.config.js --env production",
+    "dev": "rm -rf ~/.pm2/logs && pm2 start ecosystem.config.js",
+    "postinstall": "sh ./install-projects.sh",
+    "build": "sh ./rebuild-projects.sh"
   },
   "repository": {
     "type": "git",
