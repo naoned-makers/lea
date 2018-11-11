@@ -3,7 +3,7 @@ module.exports = {
 
       // Lance le serveur Express pour exposer l'UI de Léa
       {
-        name: 'lea',
+        name: 'lea-ui',
         script: './index.js',
         merge_logs: true,
         log_date_format: 'YYYY-MM-DD HH:mm',
@@ -70,7 +70,6 @@ module.exports = {
         name: 'lea-twitter',
         script: 'npm run $SCRIPT',
         cwd: '../lea-twitter',
-        watch: ["../lea-twitter/src/js/app.js"],
         merge_logs: true,
         log_date_format: 'YYYY-MM-DD HH:mm',
         env: {
